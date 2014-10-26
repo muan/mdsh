@@ -25,11 +25,11 @@ renderer.blockquote = function(quote) {
 }
 
 renderer.html = function(html) {
-  return html + "\n"
+  return html
 }
 
 renderer.heading = function(text, level, raw) {
-  text = new Array(level + 1).join("#") + " " + text
+  text = many("#", level) + " " + text
   return "\n" + u(c.underline.bold.white(text)) + "\n"
 }
 
@@ -83,11 +83,11 @@ renderer.tablecell = function(content, flags) {
 }
 
 renderer.strong = function(text) {
-  return c.bold(text) + "\n"
+  return c.bold(text)
 }
 
 renderer.em = function(text) {
-  return c.gray.italic(text) + "\n"
+  return c.green.italic(text)
 }
 
 renderer.codespan = function(text) {
@@ -95,7 +95,7 @@ renderer.codespan = function(text) {
 }
 
 renderer.br = function() {
-  return  "<br>\n"
+  return  "\n"
 }
 
 renderer.del = function(text) {
