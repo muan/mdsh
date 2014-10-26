@@ -1,0 +1,17 @@
+{
+  "name": "tomd",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "Mu-An Chiou <me@muanchiou.com>",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "~0.3.2",
+    "chalk": "~0.5.1",
+    "word-wrap": "~0.1.3",
+    "unescape": "~0.1.1"
+  }
+}
