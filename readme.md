@@ -2,7 +2,7 @@
 
 markdown in terminal. super inconsistent.
 
-![readme](http://cl.ly/image/210O0W1t2Y2z/Image%202014-10-27%20at%202.47.00%20AM.png)
+![readme](http://cl.ly/image/3D1s1A1z1O0h/Image%202014-10-27%20at%202.52.55%20AM.png)
 
 ## usage
 
