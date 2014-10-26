@@ -111,7 +111,7 @@ renderer.link = function(href, title, text) {
 }
 
 renderer.image = function(href, title, text) {
-  text = "✖ IMG[" + title + "] ✖"
+  text = "✖ IMG[" + text + "] ✖"
   return c.bgRed.white(padded(text))
 }
 
