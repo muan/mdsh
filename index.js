@@ -47,7 +47,7 @@ renderer.list = function(body, ordered) {
     var prefix = ordered ? (i + "." + many(" ", indentation - (ilength) - 1)) : "- "
     i++
     return wrap(item, {
-      indent: prefix, 
+      indent: item.match(/^- |^  /) ? "  " : prefix,
       width: width, newline: "\n" + many(" ", indentation)}
     )
   }).join("\n")
