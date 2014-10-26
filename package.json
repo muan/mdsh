@@ -1,7 +1,7 @@
 {
   "name": "mdsh",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "makes markdown in terminal",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
