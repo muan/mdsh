@@ -4,6 +4,7 @@ var u          = require('unescape')
 var wrap       = require('word-wrap')
 var renderer   = new marked.Renderer()
 var width      = process.stdout.columns
+var Table      = require('cli-table')
 var links      = []
 module.exports = md
 
@@ -62,15 +63,23 @@ renderer.paragraph = function(text) {
 }
 
 renderer.table = function(header, body) {
-  return "\n" + header + body + "\n"
+  var newtable = new Table({
+    head: header.replace(/>>>/, "").split(",,,")
+  })
+  var arr = body.split(">>>")
+  arr.map(function(row){
+    if(!row) return
+    newtable.push(row.split(",,,"))
+  })
+  return "\n" + newtable.toString() + "\n"
 }
 
 renderer.tablerow = function(content) {
-  return content + "\n"
+  return content.replace(/,,,$/, '') + ">>>"
 }
 
 renderer.tablecell = function(content, flags) {
-  return content + "\n"
+  return content + ",,,"
 }
 
 renderer.strong = function(text) {
