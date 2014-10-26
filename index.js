@@ -15,7 +15,9 @@ function md (text) {
 // Cool renderer
 
 renderer.code = function(code, lang, escaped) {
-  code = wrap(code, {width: width})
+  code = wrap(code, {indent: ":::", width: width, newline: ":::"})
+  // wrap doesn't allow nil for indent/newline, potential PR.
+  code = code.replace(/:::/g, "")
   return "\n" + c.yellow(code) + "\n"
 }
 
@@ -51,7 +53,7 @@ renderer.list = function(body, ordered) {
       width: width, newline: "\n" + many(" ", indentation)}
     )
   }).join("\n")
-  return "\n" + body + "\n"
+  return "\n" + body
 }
 
 renderer.listitem = function(text) {
