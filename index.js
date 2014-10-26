@@ -124,6 +124,7 @@ function many(str, times) {
 }
 
 function appendix(links) {
+  if(links.length == 0) return ""
   var i = 0
   return renderer.hr() + "\n" + links.map(function(url) {
     return "[" + i++ + "] " + url
