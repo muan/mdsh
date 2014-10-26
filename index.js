@@ -41,7 +41,7 @@ renderer.heading = function(text, level, raw) {
 }
 
 renderer.hr = function() {
-  return "<hr>\n"
+  return "\n" + many("*", width) + "\n"
 }
 
 renderer.list = function(body, ordered) {
@@ -82,11 +82,11 @@ renderer.tablecell = function(content, flags) {
 }
 
 renderer.strong = function(text) {
-  return text + "\n"
+  return c.bold(text) + "\n"
 }
 
 renderer.em = function(text) {
-  return text + "\n"
+  return c.gray.italic(text) + "\n"
 }
 
 renderer.codespan = function(text) {
