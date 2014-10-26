@@ -4,10 +4,11 @@ var u          = require('unescape')
 var wrap       = require('word-wrap')
 var renderer   = new marked.Renderer()
 var width      = process.stdout.columns
+var links      = []
 module.exports = md
 
 function md (text) {
-  return marked(text, { renderer: renderer })
+  return marked(text, { renderer: renderer }) + appendix(links)
 }
 
 // Cool renderer
@@ -102,6 +103,8 @@ renderer.del = function(text) {
 }
 
 renderer.link = function(href, title, text) {
+  text = text + " [" + links.length + "]"
+  links.push(href)
   return c.cyan(text)
 }
 
@@ -116,4 +119,11 @@ function padded(text) {
 
 function many(str, times) {
   return (new Array(times + 1)).join(str)
+}
+
+function appendix(links) {
+  var i = 0
+  return "\n" + links.map(function(url) {
+    return "[" + i++ + "] " + url
+  }).join("\n") + "\n"
 }
