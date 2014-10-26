@@ -14,17 +14,8 @@ function md (text) {
 // Cool renderer
 
 renderer.code = function(code, lang, escaped) {
-  var lines = wrap(code, {indent: "\r ", width: (width - 3)}).split(/\n/)
-  var max = Math.max.apply(Math, lines.map(function(l) { return l.length }))
-  var lines = lines.map(function(line) {
-    if(!line) return null
-    if(line.length < max) {
-      line = line + (new Array(max - line.length + 1).join(" "))
-    }
-    return line + " "
-  }).filter(function(val) { return val !== null })
-  code = lines.join("\n")
-  return "\n" + c.inverse(code) + "\n"
+  code = wrap(code, {width: width})
+  return "\n" + c.yellow(code) + "\n"
 }
 
 renderer.blockquote = function(quote) {
@@ -38,7 +29,7 @@ renderer.html = function(html) {
 
 renderer.heading = function(text, level, raw) {
   text = new Array(level + 1).join("#") + " " + text
-  return "\n" + c.underline.white(text) + "\n"
+  return "\n" + u(c.underline.bold.white(text)) + "\n"
 }
 
 renderer.hr = function() {
@@ -71,7 +62,7 @@ renderer.paragraph = function(text) {
 }
 
 renderer.table = function(header, body) {
-  return header + "\n"
+  return "\n" + header + body + "\n"
 }
 
 renderer.tablerow = function(content) {
@@ -91,7 +82,7 @@ renderer.em = function(text) {
 }
 
 renderer.codespan = function(text) {
-  return c.inverse(padded(text))
+  return c.yellow(text)
 }
 
 renderer.br = function() {
@@ -123,7 +114,7 @@ function many(str, times) {
 
 function appendix(links) {
   var i = 0
-  return "\n" + links.map(function(url) {
+  return renderer.hr() + "\n" + links.map(function(url) {
     return "[" + i++ + "] " + url
   }).join("\n") + "\n"
 }
