@@ -13,20 +13,20 @@ function md (text) {
 // Cool renderer
 
 renderer.code = function(code, lang, escaped) {
-  var lines = code.split(/\n/)
+  var lines = wrap(code, {indent: "\r ", width: (width - 3)}).split(/\n/)
   var max = Math.max.apply(Math, lines.map(function(l) { return l.length }))
   var lines = lines.map(function(line) {
+    if(!line) return null
     if(line.length < max) {
       line = line + (new Array(max - line.length + 1).join(" "))
     }
-    return padded(line)
-  })
+    return line + " "
+  }).filter(function(val) { return val !== null })
   code = lines.join("\n")
   return "\n" + c.inverse(code) + "\n"
 }
 
 renderer.blockquote = function(quote) {
-  console.log(quote)
   quote = wrap(quote, {indent: '> ', width: width, newline: "> "})
   return quote + "\n"
 }
@@ -107,7 +107,7 @@ renderer.link = function(href, title, text) {
 
 renderer.image = function(href, title, text) {
   text = "✖ IMG[" + title + "] ✖"
-  return c.bgGreen.black(padded(text))
+  return c.bgRed.white(padded(text))
 }
 
 function padded(text) {
